@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="signup-img">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/assets/signup-img.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
