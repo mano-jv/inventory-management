@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/inventory-management/static/css/main.73f04872.css",
-    "main.js": "/inventory-management/static/js/main.6a39d047.js",
-    "static/js/498.17945531.chunk.js": "/inventory-management/static/js/498.17945531.chunk.js",
-    "static/js/703.bb9f45c2.chunk.js": "/inventory-management/static/js/703.bb9f45c2.chunk.js",
-    "static/js/598.5058500a.chunk.js": "/inventory-management/static/js/598.5058500a.chunk.js",
-    "static/js/787.c065e12d.chunk.js": "/inventory-management/static/js/787.c065e12d.chunk.js",
+    "main.js": "/inventory-management/static/js/main.b20182cb.js",
+    "static/js/498.fcf4b7a0.chunk.js": "/inventory-management/static/js/498.fcf4b7a0.chunk.js",
+    "static/js/703.b94efe07.chunk.js": "/inventory-management/static/js/703.b94efe07.chunk.js",
+    "static/js/598.ad2b3219.chunk.js": "/inventory-management/static/js/598.ad2b3219.chunk.js",
+    "static/js/787.93120110.chunk.js": "/inventory-management/static/js/787.93120110.chunk.js",
     "static/media/signup.jpg": "/inventory-management/static/media/signup.f15f90666859b33549cb.jpg",
     "static/media/logo.png": "/inventory-management/static/media/logo.8672361d124cd58f015e.png",
     "static/media/person.jfif": "/inventory-management/static/media/person.5362bc38b75c388208ba.jfif",
     "index.html": "/inventory-management/index.html",
     "main.73f04872.css.map": "/inventory-management/static/css/main.73f04872.css.map",
-    "main.6a39d047.js.map": "/inventory-management/static/js/main.6a39d047.js.map",
-    "498.17945531.chunk.js.map": "/inventory-management/static/js/498.17945531.chunk.js.map",
-    "703.bb9f45c2.chunk.js.map": "/inventory-management/static/js/703.bb9f45c2.chunk.js.map",
-    "598.5058500a.chunk.js.map": "/inventory-management/static/js/598.5058500a.chunk.js.map",
-    "787.c065e12d.chunk.js.map": "/inventory-management/static/js/787.c065e12d.chunk.js.map"
+    "main.b20182cb.js.map": "/inventory-management/static/js/main.b20182cb.js.map",
+    "498.fcf4b7a0.chunk.js.map": "/inventory-management/static/js/498.fcf4b7a0.chunk.js.map",
+    "703.b94efe07.chunk.js.map": "/inventory-management/static/js/703.b94efe07.chunk.js.map",
+    "598.ad2b3219.chunk.js.map": "/inventory-management/static/js/598.ad2b3219.chunk.js.map",
+    "787.93120110.chunk.js.map": "/inventory-management/static/js/787.93120110.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.73f04872.css",
-    "static/js/main.6a39d047.js"
+    "static/js/main.b20182cb.js"
   ]
 }
