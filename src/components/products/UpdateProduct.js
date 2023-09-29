@@ -30,12 +30,12 @@ export default function UpdateProduct({
         "Authorization": "Bearer " + sessionStorage.getItem("token")
       },
       body: JSON.stringify(product),
-    })
-      .then((result) => {
+    }).then(result => {
+      if (result.status === 200) {
         alert("Product Updated");
         setOpen(false);
-      })
-      .catch((err) => console.log(err));
+      } else alert("Operation Failed");
+    }).catch((err) => console.log(err));
   };
 
   return (

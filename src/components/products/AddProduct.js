@@ -1,13 +1,10 @@
-import { Fragment, useContext, useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { PlusIcon } from "@heroicons/react/24/outline";
-import AuthContext from "../../AuthContext";
-
 export default function AddProduct({
   addProductModalSetting,
   handlePageUpdate,
 }) {
-  const authContext = useContext(AuthContext);
   const [product, setProduct] = useState({
     name: "",
     code: "",
@@ -28,11 +25,15 @@ export default function AddProduct({
         "Authorization": "Bearer "+sessionStorage.getItem("token")
       },
       body: JSON.stringify(product),
-    })
-      .then((result) => {
-        alert("Product ADDED");
-        handlePageUpdate();
-        addProductModalSetting();
+    }).then(result => {
+        if(result.status === 200) {
+          alert(result);
+          console.log(result)
+          handlePageUpdate();
+          addProductModalSetting();
+        } else {
+          alert("Operation Failed");
+        }
       })
       .catch((err) => console.log(err));
   };

@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import AddCustomer from "../components/customers/AddCustomer";
 import UpdateCustomer from "../components/customers/UpdateCustomer";
-import AuthContext from "../AuthContext";
 import debounce from 'lodash/debounce';
 
 function Customers() {

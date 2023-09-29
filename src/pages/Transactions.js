@@ -4,14 +4,13 @@ function Transactions() {
     const [customers, setAllCustomers] = useState([]);
     const [transactions, setAllTransactions] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [updatePage, setUpdatePage] = useState(true);
-    const [filteredCustomers, setFilteredCustomers] = useState([]);
+    const [filteredCustomers, setFilteredCustomers] = useState(customers);
     const [selectedCustomerId, setSelectedCustomerId] = useState("");
 
 
     useEffect(() => {
         fetchCustomersData();
-    }, [updatePage]);
+    }, []);
 
 
     const fetchCustomersData = () => {
@@ -22,6 +21,7 @@ function Transactions() {
         }).then((response) => response.json())
             .then((data) => {
                 setAllCustomers(data);
+                setFilteredCustomers(data);
             })
             .catch((err) => console.log(err));
     };
@@ -39,34 +39,15 @@ function Transactions() {
             .catch((err) => console.log(err));
     };
 
-    // Handle Page Update
-    const handlePageUpdate = () => {
-        setUpdatePage(!updatePage);
-    };
-
-    //const handleInputChange = (key, value) => {
-    //  fetchTransactions(value);
-    //setPurchase({ ...purchase, [key]: value });
-    //};
-
-
-    const handleInputChange = (name, value) => {
-        if (name === "customerId") {
-            setSelectedCustomerId(value);
-            fetchTransactions(value)
+    const handleFetchTransaction = () => {
+        if (selectedCustomerId) {
+            fetchTransactions(selectedCustomerId);
         }
     };
 
-    const handleSearchInputChange = (e) => {
-        const {value} = e.target;
-        setSearchTerm(value);
-
-        // Filter customers based on the search term
-        const filtered = customers.filter((customer) =>
-            customer.name.toLowerCase().startsWith(value.toLowerCase())
-        );
-
-        setFilteredCustomers(filtered);
+    const handleCustomerSelect = (event) => {
+        const selectedCustomerId = event.target.value;
+        setSelectedCustomerId(selectedCustomerId);
     };
 
     return (
@@ -78,29 +59,20 @@ function Transactions() {
                         <div className="flex gap-4 justify-center items-center ">
                             <span className="font-bold">Transactions</span>
                             <div className="flex justify-center items-center px-2 border-2 rounded-md">
-                                <input
-                                    type="text"
-                                    placeholder="Search Customers"
-                                    value={searchTerm}
-                                    onChange={handleSearchInputChange}
+                                <input type="text" list="customerId" placeholder="Search Customers" onChange={handleCustomerSelect}
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 />
-                            </div>
-                            <div>
-                                <select
-                                    id="customerId"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    name="customerId"
-                                    onChange={(e) => handleInputChange(e.target.name, e.target.value)}
-                                    value={selectedCustomerId}
-                                >
-                                    <option value="">Select Customers</option>
-                                    {filteredCustomers.map((element) => (
-                                        <option key={element.id} value={element.id}>
-                                            {element.name}
-                                        </option>
-                                    ))}
-                                </select>
+                                <datalist id ="customerId">
+                                    {
+                                        filteredCustomers.map((element) => (
+                                            <option key={element.id} value={element.id}>
+                                                {element.name}
+                                            </option>
+                                        ))
+                                    }
+
+                                </datalist>
+                                <button onClick={handleFetchTransaction}>Fetch Transaction</button>
                             </div>
                         </div>
                     </div>
