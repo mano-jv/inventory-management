@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.73f04872.css",
-    "main.js": "/static/js/main.8663786b.js",
-    "static/js/498.cbe983dd.chunk.js": "/static/js/498.cbe983dd.chunk.js",
-    "static/js/703.018ef106.chunk.js": "/static/js/703.018ef106.chunk.js",
-    "static/js/598.d0213e90.chunk.js": "/static/js/598.d0213e90.chunk.js",
-    "static/js/787.b360a03a.chunk.js": "/static/js/787.b360a03a.chunk.js",
-    "static/media/signup.jpg": "/static/media/signup.f15f90666859b33549cb.jpg",
-    "static/media/logo.png": "/static/media/logo.8672361d124cd58f015e.png",
-    "static/media/person.jfif": "/static/media/person.5362bc38b75c388208ba.jfif",
-    "index.html": "/index.html",
-    "main.73f04872.css.map": "/static/css/main.73f04872.css.map",
-    "main.8663786b.js.map": "/static/js/main.8663786b.js.map",
-    "498.cbe983dd.chunk.js.map": "/static/js/498.cbe983dd.chunk.js.map",
-    "703.018ef106.chunk.js.map": "/static/js/703.018ef106.chunk.js.map",
-    "598.d0213e90.chunk.js.map": "/static/js/598.d0213e90.chunk.js.map",
-    "787.b360a03a.chunk.js.map": "/static/js/787.b360a03a.chunk.js.map"
+    "main.css": "/github-portfolio/inventory-management/static/css/main.73f04872.css",
+    "main.js": "/github-portfolio/inventory-management/static/js/main.d5fd5bb0.js",
+    "static/js/498.17945531.chunk.js": "/github-portfolio/inventory-management/static/js/498.17945531.chunk.js",
+    "static/js/703.bb9f45c2.chunk.js": "/github-portfolio/inventory-management/static/js/703.bb9f45c2.chunk.js",
+    "static/js/598.5058500a.chunk.js": "/github-portfolio/inventory-management/static/js/598.5058500a.chunk.js",
+    "static/js/787.c065e12d.chunk.js": "/github-portfolio/inventory-management/static/js/787.c065e12d.chunk.js",
+    "static/media/signup.jpg": "/github-portfolio/inventory-management/static/media/signup.f15f90666859b33549cb.jpg",
+    "static/media/logo.png": "/github-portfolio/inventory-management/static/media/logo.8672361d124cd58f015e.png",
+    "static/media/person.jfif": "/github-portfolio/inventory-management/static/media/person.5362bc38b75c388208ba.jfif",
+    "index.html": "/github-portfolio/inventory-management/index.html",
+    "main.73f04872.css.map": "/github-portfolio/inventory-management/static/css/main.73f04872.css.map",
+    "main.d5fd5bb0.js.map": "/github-portfolio/inventory-management/static/js/main.d5fd5bb0.js.map",
+    "498.17945531.chunk.js.map": "/github-portfolio/inventory-management/static/js/498.17945531.chunk.js.map",
+    "703.bb9f45c2.chunk.js.map": "/github-portfolio/inventory-management/static/js/703.bb9f45c2.chunk.js.map",
+    "598.5058500a.chunk.js.map": "/github-portfolio/inventory-management/static/js/598.5058500a.chunk.js.map",
+    "787.c065e12d.chunk.js.map": "/github-portfolio/inventory-management/static/js/787.c065e12d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.73f04872.css",
-    "static/js/main.8663786b.js"
+    "static/js/main.d5fd5bb0.js"
   ]
 }
