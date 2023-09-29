@@ -4,35 +4,36 @@ import { PlusIcon } from "@heroicons/react/24/outline";
 import AuthContext from "../../AuthContext";
 
 export default function AddUser({
-  addCustomerModalSetting,
+  addUserModalSetting,
   handlePageUpdate,
 }) {
   const authContext = useContext(AuthContext);
-  const [customer, setCustomer] = useState({
-    name: "",
-    code: "",
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+    userType: "",
   });
-  console.log("----",customer)
+  console.log("----",user)
   const [open, setOpen] = useState(true);
   const cancelButtonRef = useRef(null);
 
   const handleInputChange = (key, value) => {
-    setCustomer({ ...customer, [key]: value });
+    setUser({ ...user, [key]: value });
   };
 
-  const addCustomer = () => {
-    fetch("http://localhost:80/inventory/v1/customers", {
+  const addUser = () => {
+    fetch("http://localhost:80/inventory/v1/users", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
         "Authorization": "Bearer "+sessionStorage.getItem("token")
       },
-      body: JSON.stringify(customer),
+      body: JSON.stringify(user),
     })
       .then((result) => {
-        alert("Customer ADDED");
+        alert("User ADDED");
         handlePageUpdate();
-        addCustomerModalSetting();
+        addUserModalSetting();
       })
       .catch((err) => console.log(err));
   };
@@ -83,66 +84,66 @@ export default function AddUser({
                         as="h3"
                         className="text-lg font-semibold leading-6 text-gray-900 "
                       >
-                        Add Customer
+                        Add User
                       </Dialog.Title>
-                      <form action="components/customers/AddCustomer#">
+                      <form action="components/users/AddUser#">
                         <div className="grid gap-4 mb-4 sm:grid-cols-2">
                           <div>
                             <label
                               htmlFor="name"
                               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                             >
-                              Name
+                              UserName
                             </label>
                             <input
                               type="text"
-                              name="name"
-                              id="name"
-                              value={customer.name}
+                              name="username"
+                              id="username"
+                              value={user.username}
                               onChange={(e) =>
                                 handleInputChange(e.target.name, e.target.value)
                               }
                               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                              placeholder="Customer Name"
+                              placeholder="UserName"
                             />
                           </div>
                           <div>
                             <label
-                              htmlFor="manufacturer"
+                              htmlFor="password"
                               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                             >
-                              Manufacturer
+                              Password
                             </label>
                             <input
-                              type="text"
-                              name="code"
-                              id="code"
-                              value={customer.code}
+                              type="password"
+                              name="password"
+                              id="password"
+                              value={user.password}
                               onChange={(e) =>
                                 handleInputChange(e.target.name, e.target.value)
                               }
                               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                              placeholder="Customer Code"
+                              placeholder="UserPassword"
                             />
                           </div>
-                          <div>
+                          <div className="mt-4">
                             <label
-                                for="phone"
+                                htmlFor="userType"
                                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                             >
-                              PhoneNumber
+                              UserType
                             </label>
-                            <input
-                                type="number"
-                                name="phoneNumber"
-                                id="phoneNumber"
-                                value={customer.phoneNumber}
-                                onChange={(e) =>
-                                    handleInputChange(e.target.name, e.target.value)
-                                }
+                            <select
+                                name="userType"
+                                id="userType"
+                                value={user.userType}
+                                onChange={(e) => handleInputChange(e.target.name, e.target.value)}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="Contact Number"
-                            />
+                            >
+                              <option value="">Select User Type</option>
+                              <option value="ADMIN">ADMIN</option>
+                              <option value="USER">USER</option>
+                            </select>
                           </div>
                         </div>
                         <div className="flex items-center space-x-4">
@@ -179,14 +180,14 @@ export default function AddUser({
                   <button
                     type="button"
                     className="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto"
-                    onClick={addCustomer}
+                    onClick={addUser}
                   >
-                    Add Customer
+                    Add User
                   </button>
                   <button
                     type="button"
                     className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                    onClick={() => addCustomerModalSetting()}
+                    onClick={() => addUserModalSetting()}
                     ref={cancelButtonRef}
                   >
                     Cancel

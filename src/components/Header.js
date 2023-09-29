@@ -1,16 +1,15 @@
-import { Fragment, useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import AuthContext from "../AuthContext";
 import { Link } from "react-router-dom";
 
 const navigation = [
-  { name: "Dashboard", href: "/", current: true },
+  { name: "Users", href: "/users", current: false },
   { name: "Customers", href: "/customers", current: false },
-  { name: "Inventory", href: "/inventory", current: false },
+  { name: "Inventory", href: "/inventory", current: true },
   { name: "Products", href: "/products", current: false },
-  { name: "Sales", href: "/sales", current: false },
-  { name: "Manage Store", href: "/manage-store", current: false },
+  { name: "Generate Bill", href: "/generate-bill", current: false },
 ];
 
 const userNavigation = [{ name: "Sign out", href: "./login" }];
@@ -136,14 +135,14 @@ export default function Header() {
                   <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
                       <img
-                        className="h-10 w-10 rounded-full"
-                        src={localStorageData.imageUrl}
-                        alt="profile"
+                          alt="Profile"
+                          src={require("../assets/person.jfif")}
+                          className="h-10 w-10 rounded-full object-cover"
                       />
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium leading-none text-white">
-                        {localStorageData.username}
+                        {localStorageData.username?.upperCase}
                       </div>
                     </div>
                   </div>

@@ -1,38 +1,38 @@
-import { Fragment, useContext, useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { PlusIcon } from "@heroicons/react/24/outline";
-import AuthContext from "../../AuthContext";
 
-export default function AddUser({
-  addCustomerModalSetting,
-  handlePageUpdate,
+export default function UpdateUser({
+  updateCustomerData,
+  updateModalSetting,
 }) {
-  const authContext = useContext(AuthContext);
+  const { id, name, code, phoneNumber } = updateCustomerData;
   const [customer, setCustomer] = useState({
-    name: "",
-    code: "",
+    customerID: id,
+    name: name,
+    code: code,
+    phoneNumber: phoneNumber,
   });
-  console.log("----",customer)
   const [open, setOpen] = useState(true);
   const cancelButtonRef = useRef(null);
 
   const handleInputChange = (key, value) => {
+    console.log(key);
     setCustomer({ ...customer, [key]: value });
   };
 
-  const addCustomer = () => {
-    fetch("http://localhost:80/inventory/v1/customers", {
-      method: "POST",
+  const updateCustomer = () => {
+    fetch(`http://localhost:80/inventory/v1/customers/${customer.customerID}`, {
+      method: "PUT",
       headers: {
         "Content-type": "application/json",
-        "Authorization": "Bearer "+sessionStorage.getItem("token")
+        "Authorization": "Bearer " + sessionStorage.getItem("token")
       },
       body: JSON.stringify(customer),
     })
       .then((result) => {
-        alert("Customer ADDED");
-        handlePageUpdate();
-        addCustomerModalSetting();
+        alert("Customer Updated");
+        setOpen(false);
       })
       .catch((err) => console.log(err));
   };
@@ -83,9 +83,9 @@ export default function AddUser({
                         as="h3"
                         className="text-lg font-semibold leading-6 text-gray-900 "
                       >
-                        Add Customer
+                        Update Product
                       </Dialog.Title>
-                      <form action="components/customers/AddCustomer#">
+                      <form action="#">
                         <div className="grid gap-4 mb-4 sm:grid-cols-2">
                           <div>
                             <label
@@ -103,7 +103,7 @@ export default function AddUser({
                                 handleInputChange(e.target.name, e.target.value)
                               }
                               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                              placeholder="Customer Name"
+                              placeholder="Ex. Apple iMac 27&ldquo;"
                             />
                           </div>
                           <div>
@@ -122,26 +122,26 @@ export default function AddUser({
                                 handleInputChange(e.target.name, e.target.value)
                               }
                               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                              placeholder="Customer Code"
+                              placeholder="Product Code"
                             />
                           </div>
                           <div>
                             <label
-                                for="phone"
-                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                              for="price"
+                              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                             >
                               PhoneNumber
                             </label>
                             <input
-                                type="number"
-                                name="phoneNumber"
-                                id="phoneNumber"
-                                value={customer.phoneNumber}
-                                onChange={(e) =>
-                                    handleInputChange(e.target.name, e.target.value)
-                                }
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="Contact Number"
+                              type="number"
+                              name="phoneNumber"
+                              id="phoneNumber"
+                              value={customer.phoneNumber}
+                              onChange={(e) =>
+                                handleInputChange(e.target.name, e.target.value)
+                              }
+                              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                              placeholder="Product Price"
                             />
                           </div>
                         </div>
@@ -179,14 +179,14 @@ export default function AddUser({
                   <button
                     type="button"
                     className="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto"
-                    onClick={addCustomer}
+                    onClick={updateCustomer}
                   >
-                    Add Customer
+                    Update Customer
                   </button>
                   <button
                     type="button"
                     className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                    onClick={() => addCustomerModalSetting()}
+                    onClick={() => updateModalSetting()}
                     ref={cancelButtonRef}
                   >
                     Cancel

@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useContext } from "react";
-import AddCustomer from "../components/customers/AddCustomer";
-import UpdateCustomer from "../components/customers/UpdateCustomer";
-import AuthContext from "../AuthContext";
+import AddUser from "../components/users/AddUser";
+import UpdateUser from "../components/users/UpdateUser";
 import debounce from 'lodash/debounce';
 
-function Customers() {
-  const [showCustomerModal, setShowCustomerModal] = useState(false);
+function Users() {
+  const [showUserModal, setShowUserModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
-  const [updateCustomer, setUpdateCustomer] = useState([]);
-  const [customers, setAllCustomers] = useState([]);
+  const [updateUser, setUpdateUser] = useState([]);
+  const [users, setAllUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [updatePage, setUpdatePage] = useState(true);
 
+
   useEffect(() => {
-    fetchCustomersData();
+    fetchUsersData();
   }, [updatePage]);
 
   const debouncedHandleSearchTerm = debounce((value) => {
@@ -21,49 +21,49 @@ function Customers() {
     console.log(value);
   }, 1000);
 
-  // Fetching Data of All Customers
-  const fetchCustomersData = () => {
-    fetch(`http://localhost:80/inventory/v1/customers`, {
+  // Fetching Data of All Users
+  const fetchUsersData = () => {
+    fetch(`http://localhost:80/inventory/v1/users`, {
       'headers': {
         'Authorization': "Bearer " + sessionStorage.getItem("token")
       }
     }).then((response) => response.json())
       .then((data) => {
-        setAllCustomers(data);
+        setAllUsers(data);
       })
       .catch((err) => console.log(err));
   };
 
-  // Fetching Data of Search customers
+  // Fetching Data of Search Users
   const fetchSearchData = (searchTerm) => {
-    fetch(`http://localhost:80/inventory/v1/customers?name=${searchTerm}`, {
+    fetch(`http://localhost:80/inventory/v1/users?name=${searchTerm}`, {
       'headers': {
         'Authorization': "Bearer " + sessionStorage.getItem("token")
       }
     }).then((response) => response.json())
       .then((data) => {
-        setAllCustomers(data);
+        setAllUsers(data);
       })
       .catch((err) => console.log(err));
   };
 
-  // Modal for Customer ADD
-  const addCustomerModalSetting = () => {
-    setShowCustomerModal(!showCustomerModal);
+  // Modal for User ADD
+  const addUserModalSetting = () => {
+    setShowUserModal(!showUserModal);
   };
 
-  // Modal for Customer UPDATE
-  const updateCustomerModalSetting = (selectedCustomerData) => {
+  // Modal for User UPDATE
+  const updateUserModalSetting = (selectedUserData) => {
     console.log("Clicked: edit");
-    setUpdateCustomer(selectedCustomerData);
+    setUpdateUser(selectedUserData);
     setShowUpdateModal(!showUpdateModal);
   };
 
 
   // Delete item
   const deleteItem = (id) => {
-    console.log("Customer ID: ", id);
-    fetch(`http://localhost:80/inventory/v1/customers/${id}`, {
+    console.log("User ID: ", id);
+    fetch(`http://localhost:80/inventory/v1/users/${id}`, {
       'method': 'DELETE',
       'headers': {
         'Authorization': "Bearer " + sessionStorage.getItem("token")
@@ -90,16 +90,16 @@ function Customers() {
   return (
     <div className="col-span-12 lg:col-span-10  flex justify-center">
       <div className=" flex flex-col gap-5 w-11/12">
-        {showCustomerModal && (
-          <AddCustomer
-            addCustomerModalSetting={addCustomerModalSetting}
+        {showUserModal && (
+          <AddUser
+            addUserModalSetting={addUserModalSetting}
             handlePageUpdate={handlePageUpdate}
           />
         )}
         {showUpdateModal && (
-          <UpdateCustomer
-            updateCustomerData={updateCustomer}
-            updateModalSetting={updateCustomerModalSetting}
+          <UpdateUser
+            updateUserData={updateUser}
+            updateModalSetting={updateUserModalSetting}
           />
         )}
 
@@ -107,7 +107,7 @@ function Customers() {
         <div className="overflow-x-auto rounded-lg border bg-white border-gray-200 ">
           <div className="flex justify-between pt-5 pb-3 px-3">
             <div className="flex gap-4 justify-center items-center ">
-              <span className="font-bold">Customers</span>
+              <span className="font-bold">Users</span>
               <div className="flex justify-center items-center px-2 border-2 rounded-md ">
                 <img
                   alt="search-icon"
@@ -126,10 +126,10 @@ function Customers() {
             <div className="flex gap-4">
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 text-xs  rounded"
-                onClick={addCustomerModalSetting}
+                onClick={addUserModalSetting}
               >
                 {/* <Link to="/inventory/add-product">Add Product</Link> */}
-                Add Customer
+                Add User
               </button>
             </div>
           </div>
@@ -137,43 +137,23 @@ function Customers() {
             <thead>
               <tr>
                 <th className="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900">
-                  Customer Name
+                  User Name
                 </th>
                 <th className="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900">
-                  Customer Code
-                </th>
-                <th className="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900">
-                  Contact Number
+                  User Type
                 </th>
               </tr>
             </thead>
 
             <tbody className="divide-y divide-gray-200">
-              {customers.map((element, index) => {
+              {users.map((element, index) => {
                 return (
                   <tr key={element.id}>
                     <td className="whitespace-nowrap px-4 py-2  text-gray-900">
-                      {element.name}
+                      {element.username}
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                      {element.code}
-                    </td>
-                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                      {element.phoneNumber}
-                    </td>
-                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                      <span
-                        className="text-green-700 cursor-pointer"
-                        onClick={() => updateCustomerModalSetting(element)}
-                      >
-                        Edit{" "}
-                      </span>
-                      <span
-                        className="text-red-600 px-2 cursor-pointer"
-                        onClick={() => deleteItem(element.id)}
-                      >
-                        Delete
-                      </span>
+                      {element.userType}
                     </td>
                   </tr>
                 );
@@ -186,4 +166,4 @@ function Customers() {
   );
 }
 
-export default Customers;
+export default Users;

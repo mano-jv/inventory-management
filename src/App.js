@@ -1,6 +1,5 @@
 import React from "react";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
 import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
@@ -13,6 +12,9 @@ import Store from "./pages/Store";
 import Sales from "./pages/Sales";
 import PurchaseDetails from "./pages/PurchaseDetails";
 import Customers from "./pages/Customers";
+import Transactions from "./pages/Transactions";
+import Users from "./pages/Users";
+import PdfGenerator from "./pages/PdfGenerator";
 
 const App = () => {
   const [user, setUser] = useState("");
@@ -71,10 +73,13 @@ const App = () => {
               </ProtectedWrapper>
             }
           >
-            <Route index element={<Dashboard />} />
+            <Route index element={<PurchaseDetails />} />
+            <Route path="/users" element={<Users />} />
             <Route path="/customers" element={<Customers />} />
             <Route path="/inventory" element={<Inventory />} />
             <Route path="/products" element={<PurchaseDetails />} />
+            <Route path="/generate-bill" element={<PdfGenerator />} />
+            <Route path="/transactions" element={<Transactions />} />
             <Route path="/sales" element={<Sales />} />
             <Route path="/manage-store" element={<Store />} />
           </Route>

@@ -1,16 +1,20 @@
 import React, { useState, useEffect, useContext } from "react";
 import AddPurchaseDetails from "../components/AddPurchaseDetails";
+import ReturnPurchaseDetails from "../components/ReturnPurchaseDetails";
 import AuthContext from "../AuthContext";
 
 function Products() {
   const [showPurchaseModal, setPurchaseModal] = useState(false);
+  const [showReturnPurchaseModal, setShowReturnPurchaseModal] = useState(false);
   const [products, setAllProducts] = useState([]);
+  const [customers, setAllCustomers] = useState([]);
   const [updatePage, setUpdatePage] = useState(true);
 
   const authContext = useContext(AuthContext);
 
   useEffect(() => {
     fetchProductsData();
+    fetchCustomersData();
   }, [updatePage]);
 
 
@@ -29,9 +33,27 @@ function Products() {
       .catch((err) => console.log(err));
   };
 
+  const fetchCustomersData = () => {
+    fetch(`http://localhost:80/inventory/v1/customers`, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": "Bearer " + sessionStorage.getItem("token")
+      }
+    }).then((response) => response.json())
+        .then((data) => {
+          setAllCustomers(data);
+        })
+        .catch((err) => console.log(err));
+  };
+
   // Modal for Sale Add
   const addSaleModalSetting = () => {
     setPurchaseModal(!showPurchaseModal);
+  };
+
+  const handleReturnPurchaseModal = () => {
+    setShowReturnPurchaseModal(!showReturnPurchaseModal);
   };
 
   
@@ -47,6 +69,7 @@ function Products() {
           <AddPurchaseDetails
             addSaleModalSetting={addSaleModalSetting}
             products={products}
+            customers={customers}
             handlePageUpdate={handlePageUpdate}
             authContext = {authContext}
           />
@@ -57,7 +80,7 @@ function Products() {
             <div className="flex gap-4 justify-center items-center ">
               <span className="font-bold">Products</span>
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 text-xs  rounded"
                 onClick={addSaleModalSetting}
@@ -66,6 +89,23 @@ function Products() {
                 Add Purchase
               </button>
             </div>
+            <div className="flex gap-4">
+              <button
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 text-xs  rounded"
+                  onClick={handleReturnPurchaseModal}
+              >
+                Return Purchase
+              </button>
+            </div>
+            {showReturnPurchaseModal && (
+                <ReturnPurchaseDetails
+                    addSaleModalSetting={handleReturnPurchaseModal}
+                    products={products}
+                    customers={customers}
+                    handlePageUpdate={handlePageUpdate}
+                    authContext = {authContext}
+                />
+            )}
           </div>
           <table className="min-w-full divide-y-2 divide-gray-200 text-sm">
             <thead>

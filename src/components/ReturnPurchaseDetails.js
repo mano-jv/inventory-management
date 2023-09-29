@@ -2,7 +2,7 @@ import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { PlusIcon } from "@heroicons/react/24/outline";
 
-export default function AddPurchaseDetails({
+export default function ReturnPurchaseDetails({
   addSaleModalSetting,
   products, customers,
   handlePageUpdate,
@@ -22,10 +22,10 @@ export default function AddPurchaseDetails({
   };
 
   // POST Data
-  const addSale = () => {
+  const returnSale = () => {
     let purchases = []
     purchases.push(purchase)
-    fetch("http://localhost:80/inventory/v1/products/sell", {
+    fetch("http://localhost:80/inventory/v1/products/return", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -33,12 +33,12 @@ export default function AddPurchaseDetails({
       },
       body: JSON.stringify(purchases),
     })
-      .then((result) => {
-        alert("Purchase ADDED");
-        handlePageUpdate();
-        addSaleModalSetting();
-      })
-      .catch((err) => console.log(err));
+        .then((result) => {
+          alert("Purchase Returned");
+          handlePageUpdate();
+          addSaleModalSetting();
+        })
+        .catch((err) => console.log(err));
   };
 
   return (
@@ -171,9 +171,9 @@ export default function AddPurchaseDetails({
                   <button
                     type="button"
                     className="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto"
-                    onClick={addSale}
+                    onClick={returnSale}
                   >
-                    Add
+                    Return
                   </button>
                   <button
                     type="button"

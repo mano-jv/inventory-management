@@ -8,16 +8,20 @@ function SideMenu() {
     <div className="h-full flex-col justify-between  bg-white hidden lg:flex ">
       <div className="px-4 py-6">
         <nav aria-label="Main Nav" className="mt-6 flex flex-col space-y-1">
-          <Link
-            to="/"
-            className="flex items-center gap-2 rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700"
-          >
-            <img
-              alt="dashboard-icon"
-              src={require("../assets/dashboard-icon.png")}
-            />
-            <span className="text-sm font-medium"> Dashboard </span>
-          </Link>
+
+          <details className="group [&_summary::-webkit-details-marker]:hidden">
+            <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+              <Link to="/users">
+                <div className="flex items-center gap-2">
+                  <img
+                      alt="customers-icon"
+                      src={require("../assets/inventory-icon.png")}
+                  />
+                  <span className="text-sm font-medium"> Users </span>
+                </div>
+              </Link>
+            </summary>
+          </details>
 
           <details className="group [&_summary::-webkit-details-marker]:hidden">
             <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
@@ -46,6 +50,19 @@ function SideMenu() {
               </Link>
             </summary>
           </details>
+          <details className="group [&_summary::-webkit-details-marker]:hidden">
+            <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+              <Link to="/generate-bill">
+                <div className="flex items-center gap-2">
+                  <img
+                      alt="inventory-icon"
+                      src={require("../assets/order-icon.png")}
+                  />
+                  <span className="text-sm font-medium"> Generate Bill </span>
+                </div>
+              </Link>
+            </summary>
+          </details>
 
           <Link
             to="/products"
@@ -58,26 +75,15 @@ function SideMenu() {
             <span className="text-sm font-medium"> Products</span>
           </Link>
           <Link
-            to="/sales"
-            className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+              to="/transactions"
+              className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
           >
-            <img alt="sale-icon" src={require("../assets/supplier-icon.png")} />
-            <span className="text-sm font-medium"> Sales</span>
+            <img
+                alt="purchase-icon"
+                src={require("../assets/supplier-icon.png")}
+            />
+            <span className="text-sm font-medium"> Transactions</span>
           </Link>
-
-          <details className="group [&_summary::-webkit-details-marker]:hidden">
-            <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-              <Link to="/manage-store">
-                <div className="flex items-center gap-2">
-                  <img
-                    alt="store-icon"
-                    src={require("../assets/order-icon.png")}
-                  />
-                  <span className="text-sm font-medium"> Manage Store </span>
-                </div>
-              </Link>
-            </summary>
-          </details>
         </nav>
       </div>
 
@@ -85,14 +91,14 @@ function SideMenu() {
         <div className="flex items-center gap-2 bg-white p-4 hover:bg-gray-50">
           <img
             alt="Profile"
-            src={localStorageData.imageUrl}
+            src={require("../assets/person.jfif")}
             className="h-10 w-10 rounded-full object-cover"
           />
 
           <div>
             <p className="text-xs">
               <strong className="block font-medium">
-                {localStorageData.username}
+                {localStorageData.username?.toUpperCase()}
               </strong>
             </p>
           </div>

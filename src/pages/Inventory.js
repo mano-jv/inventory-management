@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import AddProduct from "../components/products/AddProduct";
 import UpdateProduct from "../components/products/UpdateProduct";
-import AuthContext from "../AuthContext";
 import debounce from 'lodash/debounce';
 
 function Inventory() {
@@ -12,7 +11,6 @@ function Inventory() {
   const [searchTerm, setSearchTerm] = useState('');
   const [updatePage, setUpdatePage] = useState(true);
 
-  const authContext = useContext(AuthContext);
 
   useEffect(() => {
     fetchProductsData();
