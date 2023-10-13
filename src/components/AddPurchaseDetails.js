@@ -25,7 +25,7 @@ export default function AddPurchaseDetails({
   const addSale = () => {
     let purchases = []
     purchases.push(purchase)
-    fetch("https://ims-fnb5.onrender.com/inventory/v1/products/sell", {
+    fetch("https://ims-ssn4.onrender.com/inventory/v1/products/sell", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

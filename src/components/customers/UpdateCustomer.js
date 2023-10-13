@@ -22,7 +22,7 @@ export default function UpdateCustomer({
   };
 
   const updateCustomer = () => {
-    fetch(`https://ims-fnb5.onrender.com/inventory/v1/customers/${customer.customerID}`, {
+    fetch(`https://ims-ssn4.onrender.com/inventory/v1/customers/${customer.customerID}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",

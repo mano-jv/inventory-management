@@ -23,7 +23,7 @@ function Inventory() {
 
   // Fetching Data of All Products
   const fetchProductsData = () => {
-    fetch(`https://ims-fnb5.onrender.com/inventory/v1/products`, {
+    fetch(`https://ims-ssn4.onrender.com/inventory/v1/products`, {
       'headers': {
         'Authorization': "Bearer " + sessionStorage.getItem("token")
       }
@@ -36,7 +36,7 @@ function Inventory() {
 
   // Fetching Data of Search Products
   const fetchSearchData = (searchTerm) => {
-    fetch(`https://ims-fnb5.onrender.com/inventory/v1/products?name=${searchTerm}`, {
+    fetch(`https://ims-ssn4.onrender.com/inventory/v1/products?name=${searchTerm}`, {
       'headers': {
         'Authorization': "Bearer " + sessionStorage.getItem("token")
       }
@@ -64,7 +64,7 @@ function Inventory() {
   const deleteItem = (id) => {
     console.log("Product ID: ", id);
     console.log(`http://localhost:4000/api/product/delete/${id}`);
-    fetch(`https://ims-fnb5.onrender.com/inventory/v1/products/${id}`, {
+    fetch(`https://ims-ssn4.onrender.com/inventory/v1/products/${id}`, {
       'method': 'DELETE',
       'headers': {
         'Authorization': "Bearer " + sessionStorage.getItem("token")

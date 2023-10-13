@@ -23,7 +23,7 @@ function Users() {
 
   // Fetching Data of All Users
   const fetchUsersData = () => {
-    fetch(`https://ims-fnb5.onrender.com/inventory/v1/users`, {
+    fetch(`https://ims-ssn4.onrender.com/inventory/v1/users`, {
       'headers': {
         'Authorization': "Bearer " + sessionStorage.getItem("token")
       }
@@ -36,7 +36,7 @@ function Users() {
 
   // Fetching Data of Search Users
   const fetchSearchData = (searchTerm) => {
-    fetch(`https://ims-fnb5.onrender.com/inventory/v1/users?name=${searchTerm}`, {
+    fetch(`https://ims-ssn4.onrender.com/inventory/v1/users?name=${searchTerm}`, {
       'headers': {
         'Authorization': "Bearer " + sessionStorage.getItem("token")
       }
@@ -63,7 +63,7 @@ function Users() {
   // Delete item
   const deleteItem = (id) => {
     console.log("User ID: ", id);
-    fetch(`https://ims-fnb5.onrender.com/inventory/v1/users/${id}`, {
+    fetch(`https://ims-ssn4.onrender.com/inventory/v1/users/${id}`, {
       'method': 'DELETE',
       'headers': {
         'Authorization': "Bearer " + sessionStorage.getItem("token")

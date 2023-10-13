@@ -23,7 +23,7 @@ export default function UpdateProduct({
   };
 
   const updateProduct = () => {
-    fetch(`https://ims-fnb5.onrender.com/inventory/v1/products/${product.productID}`, {
+    fetch(`https://ims-ssn4.onrender.com/inventory/v1/products/${product.productID}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",

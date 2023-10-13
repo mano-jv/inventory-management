@@ -19,7 +19,7 @@ function Login() {
 
   const authCheck = () => {
     setTimeout(() => {
-      fetch("https://ims-fnb5.onrender.com/inventory/v1/authorize", {
+      fetch("https://ims-ssn4.onrender.com/inventory/v1/authorize", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -48,7 +48,7 @@ function Login() {
     if (form.email === "" || form.password === "") {
       alert("To login user, enter details to proceed...");
     } else {
-      fetch("https://ims-fnb5.onrender.com/inventory/v1/authorize", {
+      fetch("https://ims-ssn4.onrender.com/inventory/v1/authorize", {
         method: "POST",
         headers: {
           "Content-type": "application/json"

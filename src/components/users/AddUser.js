@@ -22,7 +22,7 @@ export default function AddUser({
   };
 
   const addUser = () => {
-    fetch("https://ims-fnb5.onrender.com/inventory/v1/users", {
+    fetch("https://ims-ssn4.onrender.com/inventory/v1/users", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
