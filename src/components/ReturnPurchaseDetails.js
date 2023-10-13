@@ -25,7 +25,7 @@ export default function ReturnPurchaseDetails({
   const returnSale = () => {
     let purchases = []
     purchases.push(purchase)
-    fetch("http://localhost:80/inventory/v1/products/return", {
+    fetch("https://ims-fnb5.onrender.com/inventory/v1/products/return", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

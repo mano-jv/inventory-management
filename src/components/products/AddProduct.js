@@ -18,7 +18,7 @@ export default function AddProduct({
   };
 
   const addProduct = () => {
-    fetch("http://localhost:80/inventory/v1/products", {
+    fetch("https://ims-fnb5.onrender.com/inventory/v1/products", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

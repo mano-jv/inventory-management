@@ -9,7 +9,7 @@ function PdfGenerator() {
 
     useEffect(() => {
         // Fetch the list of customers from the /customers endpoint
-        axios.get('http://localhost:80/inventory/v1/customers', {
+        axios.get('https://ims-fnb5.onrender.com/inventory/v1/customers', {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json',
@@ -26,7 +26,7 @@ function PdfGenerator() {
 
     const generateBill = () => {
         // Fetch the JSON data for bills associated with the selected customer
-        axios.get(`http://localhost:80/inventory/v1/products/bill?customerId=${selectedCustomer}`, {
+        axios.get(`https://ims-fnb5.onrender.com/inventory/v1/products/bill?customerId=${selectedCustomer}`, {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json',

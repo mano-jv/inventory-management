@@ -14,7 +14,7 @@ function Transactions() {
 
 
     const fetchCustomersData = () => {
-        fetch(`http://localhost:80/inventory/v1/customers`, {
+        fetch(`https://ims-fnb5.onrender.com/inventory/v1/customers`, {
             'headers': {
                 'Authorization': "Bearer " + sessionStorage.getItem("token")
             }
@@ -28,7 +28,7 @@ function Transactions() {
 
     // Fetching Data of Search Products
     const fetchTransactions = (customerId) => {
-        fetch(`http://localhost:80/inventory/v1/products/transactions?customerId=${customerId}`, {
+        fetch(`https://ims-fnb5.onrender.com/inventory/v1/products/transactions?customerId=${customerId}`, {
             'headers': {
                 'Authorization': "Bearer " + sessionStorage.getItem("token")
             }

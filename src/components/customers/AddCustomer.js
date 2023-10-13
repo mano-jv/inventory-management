@@ -21,7 +21,7 @@ export default function AddUser({
   };
 
   const addCustomer = () => {
-    fetch("http://localhost:80/inventory/v1/customers", {
+    fetch("https://ims-fnb5.onrender.com/inventory/v1/customers", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

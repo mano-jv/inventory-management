@@ -20,7 +20,7 @@ function Products() {
 
   // Fetching Data of All Products
   const fetchProductsData = () => {
-    fetch(`http://localhost:80/inventory/v1/products`, {
+    fetch(`https://ims-fnb5.onrender.com/inventory/v1/products`, {
       method: "GET",
       headers: {
         "Content-type": "application/json",
@@ -34,7 +34,7 @@ function Products() {
   };
 
   const fetchCustomersData = () => {
-    fetch(`http://localhost:80/inventory/v1/customers`, {
+    fetch(`https://ims-fnb5.onrender.com/inventory/v1/customers`, {
       method: "GET",
       headers: {
         "Content-type": "application/json",

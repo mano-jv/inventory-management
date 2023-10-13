@@ -22,7 +22,7 @@ function Customers() {
 
   // Fetching Data of All Customers
   const fetchCustomersData = () => {
-    fetch(`http://localhost:80/inventory/v1/customers`, {
+    fetch(`https://ims-fnb5.onrender.com/inventory/v1/customers`, {
       'headers': {
         'Authorization': "Bearer " + sessionStorage.getItem("token")
       }
@@ -35,7 +35,7 @@ function Customers() {
 
   // Fetching Data of Search customers
   const fetchSearchData = (searchTerm) => {
-    fetch(`http://localhost:80/inventory/v1/customers?name=${searchTerm}`, {
+    fetch(`https://ims-fnb5.onrender.com/inventory/v1/customers?name=${searchTerm}`, {
       'headers': {
         'Authorization': "Bearer " + sessionStorage.getItem("token")
       }
@@ -62,7 +62,7 @@ function Customers() {
   // Delete item
   const deleteItem = (id) => {
     console.log("Customer ID: ", id);
-    fetch(`http://localhost:80/inventory/v1/customers/${id}`, {
+    fetch(`https://ims-fnb5.onrender.com/inventory/v1/customers/${id}`, {
       'method': 'DELETE',
       'headers': {
         'Authorization': "Bearer " + sessionStorage.getItem("token")
